@@ -1,0 +1,43 @@
+import java.util.Scanner;
+
+public class TeckenRäknare {
+    private int tecken = 0;
+    private int rader = 0;
+
+    public void uppdatera(String rad) {
+        tecken += rad.length();
+        rader++;
+    }
+
+    public boolean ärStop(String rad) {
+        return rad.equalsIgnoreCase("stop");
+    }
+
+    public int getTecken() {
+        return tecken;
+    }
+
+    public int getRader() {
+        return rader;
+    }
+
+    public static void main(String[] args) {
+        TeckenRäknare räknare = new TeckenRäknare();
+        Scanner scanner = new Scanner(System.in);
+        String rad;
+
+        while (true) {
+            System.out.println("Skriv något (eller 'stop' för att avsluta): ");
+            rad = scanner.nextLine();
+
+            if (räknare.ärStop(rad)) {
+                break;
+            }
+
+            räknare.uppdatera(rad);
+        }
+
+        System.out.println("Antal rader: " + räknare.getRader());
+        System.out.println("Antal tecken: " + räknare.getTecken());
+    }
+}
